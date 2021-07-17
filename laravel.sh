@@ -5,9 +5,9 @@ echo "Enter project path"
 read path
 echo "Enter domain names"
 read domain
-echo "Enter username names"
+echo "Enter username"
 read user
-echo "Enter password names"
+echo "Enter password"
 read pass
 
 mysql -u "${user}" -p "${pass}"  -e "CREATE DATABASE IF NOT EXISTS \`$name\` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci";
@@ -63,9 +63,23 @@ echo "server{
     root $path/public;
     index index.php index.html index.htm index.nginx-debian.html;
     server_name $domain;
+
+    add_header X-XSS-Protection \"1; mode=block\" always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header X-Frame-Options \"DENY\" always;
+    add_header Referrer-Policy no-referrer-when-downgrade always;
+
+    server_tokens off;
+    charset utf-8;
+
+    location = /favicon.ico {
+        access_log off; log_not_found off;
+    }
+
     location / {
         try_files \$uri \$uri/ /index.php\$is_args\$args;
     }
+
     location ~ \.php$ {
        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
        fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -79,8 +93,11 @@ echo "server{
     location = /xmlrpc.php {
         deny all;
     }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
 }
-" >"/etc/nginx/sites-available/$name"
+" > "/etc/nginx/sites-available/$name"
 sudo ln -s /etc/nginx/sites-available/"$name" /etc/nginx/sites-enabled/
 sudo nginx -t
 

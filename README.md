@@ -1,6 +1,6 @@
 # Server setup scripts
 
-These are the scripts used to provision the server for the Capybara IOT project. The project is a php Laravel project and as the server is based around the [Homestead](https://github.com/laravel/homestead) virtual box that the community has created. 
+Simple scripts to help during server setup for project written in laravel. 
 
 # Overview
 These scripts will do several things for you. 

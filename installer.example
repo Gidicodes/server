@@ -1,0 +1,2 @@
+echo  "alias new_laravel=$PWD/laravel" >> ~/.bashrc
+echo  "alias new_laravel=$PWD/laravel" >> ~/.bashrc
