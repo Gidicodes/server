@@ -1,16 +1,22 @@
 #!/bin/bash
-echo "Enter App Name E.g(Laravel) without space"
-read name
-echo "Enter Project path E.g /var/www"
+echo "Enter Project path E.g /var/www/MYPROJECT"
 read path
+echo "Enter a git repo if you would like to clone to the path or leave empty"
+read git
+if [[ "$git" ]]; then
+  sudo git clone "$git" $path
+fi
+echo "Enter App Name E.g(NewsApp) without space"
+read name
 echo "Enter domain names E.g google.com"
 read domain
-echo "Enter username"
+echo "Enter DB username"
 read user
-echo "Enter password"
+echo "Enter DB Table"
+read db_table
+echo "Enter DB password"
 read pass
-
-mysql -u "${user}" -p "${pass}"  -e "CREATE DATABASE IF NOT EXISTS \`$name\` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci";
+mysql -u "${user}" -p "${pass}" -e "CREATE DATABASE IF NOT EXISTS \`$db_table\` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci"
 
 sudo composer install --ignore-platform-reqs
 
@@ -25,7 +31,7 @@ LOG_CHANNEL=stack
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=$name
+DB_DATABASE=$db_table
 DB_USERNAME=$user
 DB_PASSWORD=$pass
 
@@ -53,13 +59,18 @@ PUSHER_APP_CLUSTER=mt1
 
 MIX_PUSHER_APP_KEY=\"\${PUSHER_APP_KEY}\"
 MIX_PUSHER_APP_CLUSTER=\"\${PUSHER_APP_CLUSTER}\"
-" >"$path/.env";
+" >"$path/.env"
 
-php artisan key:generate;
+cd "$path"
+php artisan key:generate
 
-sudo chmod -R 777 storage;
+sudo chmod -R 777 storage
 
-echo "server{
+echo "Would you like to generate an nginx VHost?
+Y|n"
+read s
+if [[ "$s" == "y" || "$s" == "yes" ]]; then
+  echo "server{
     root $path/public;
     index index.php index.html index.htm index.nginx-debian.html;
     server_name $domain;
@@ -97,15 +108,15 @@ echo "server{
         deny all;
     }
 }
-" > "/etc/nginx/sites-available/$name"
-sudo ln -s /etc/nginx/sites-available/"$name" /etc/nginx/sites-enabled/
-sudo nginx -t
+" >"/etc/nginx/sites-available/$name"
+  sudo ln -s /etc/nginx/sites-available/"$name" /etc/nginx/sites-enabled/
+  sudo nginx -t
 
-echo "Would you like to restart nginx server?
+  echo "Would you like to restart nginx server?
 Y|n"
-read r
-
-if [[ "$r" == "y" || "$r" == "yes" ]]; then
-  sudo service nginx restart
+  read r
+  if [[ "$r" == "y" || "$r" == "yes" ]]; then
+    sudo service nginx restart
+  fi
+  echo "$name added to sites"
 fi
-echo "$name added to sites"
