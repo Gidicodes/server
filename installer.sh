@@ -1,4 +1,5 @@
-sudo echo  "alias serve='bash $PWD/index.sh'" >> "~/.bash_profile"
+sudo echo  "alias serve='bash $PWD/index.sh'" > "~/.bashrc"
+source "~/.bashrc"
 echo "Delete installer?
 Y|n
 "

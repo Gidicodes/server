@@ -7,7 +7,8 @@ echo "Commands Available are
   install:mysql         Install and setup Mysql Server
   install:nginx         Install and setup Nginx
   install:php           Install and setup PHP 7.4
-  install:php8          Install and setup PHP 7.4
+  install:php8          Install and setup PHP 8
+  nginx:host            Setup new nginx host
   laravel               Setup laravel project
   laravel:file          Setup laravel project file permission
   supervisor            Create new Supervisor Conf File

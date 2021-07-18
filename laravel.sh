@@ -16,6 +16,8 @@ echo "Enter DB Table"
 read db_table
 echo "Enter DB password"
 read pass
+
+
 mysql -u "${user}" -p "${pass}" -e "CREATE DATABASE IF NOT EXISTS \`$db_table\` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci"
 
 sudo composer install --ignore-platform-reqs
@@ -62,6 +64,7 @@ MIX_PUSHER_APP_CLUSTER=\"\${PUSHER_APP_CLUSTER}\"
 " >"$path/.env"
 
 cd "$path"
+
 php artisan key:generate
 
 sudo chmod -R 777 storage
