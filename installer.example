@@ -1,2 +1,2 @@
-echo  "alias new_laravel=$PWD/laravel" >> ~/.bashrc
-echo  "alias new_laravel=$PWD/laravel" >> ~/.bashrc
+sudo echo  "alias serve='bash $PWD/index.sh'" > "~/.bash_profile"
+#sudo rm "$PWD/installer.sh"

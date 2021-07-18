@@ -1,9 +1,9 @@
 #!/bin/bash
-echo "Enter host name"
+echo "Enter App Name E.g(Laravel) without space"
 read name
-echo "Enter project path"
+echo "Enter Project path E.g /var/www"
 read path
-echo "Enter domain names"
+echo "Enter domain names E.g google.com"
 read domain
 echo "Enter username"
 read user

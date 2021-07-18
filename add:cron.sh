@@ -1,8 +1,7 @@
 #!/bin/bash
-title=system
-CRON_FILE="./$title"
+CRON_FILE="var/spool/cron/root"
 if [ ! -f "$CRON_FILE" ]; then
-  echo "cron file for root does not exist, creating.."
+  echo "Cron file for root does not exist, creating.."
   touch "$CRON_FILE"
   /usr/bin/crontab "$CRON_FILE"
 fi
