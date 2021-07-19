@@ -1,4 +1,5 @@
-sudo echo  "alias serve='bash $PWD/index.sh'" > "~/.bashrc"
+path="$PWD/index.sh"
+sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
 source "~/.bashrc"
 echo "Delete installer?
 Y|n
