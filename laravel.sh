@@ -116,12 +116,10 @@ if [["$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES"|| "$s" == "Ye
         index index.php index.html index.htm index.nginx-debian.html;
         server_name $domains;
 
-        add_header X-XSS-Protection \"1; mode=block\" always;
         add_header X-Content-Type-Options nosniff always;
-        add_header X-Frame-Options \"DENY\" always;
-        add_header Referrer-Policy no-referrer-when-downgrade always;
+        add_header X-Frame-Options \"SAMEORIGIN\" always;
 
-        server_tokens off;
+#        server_tokens off;
         charset utf-8;
 
         location = /favicon.ico {
