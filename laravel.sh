@@ -83,9 +83,9 @@ if [[ "$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES"|| "$s" == "Y
 
     MIX_PUSHER_APP_KEY=\"\${PUSHER_APP_KEY}\"
     MIX_PUSHER_APP_CLUSTER=\"\${PUSHER_APP_CLUSTER}\"
-    " >>  "$path/.env"
+    " >>  "$path/.env";
     php artisan key:generate
-if
+fi
 
 echo "Would you like to setup project file permissions?
 Y|n"
