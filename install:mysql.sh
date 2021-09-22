@@ -1,9 +1,8 @@
 #!/bin/bash
 echo "Enter Root Username"
 read mysql_root_username
-echo "Enter username"
 
-echo "Enter password"
+echo "Enter username"
 read mysql_username
 
 echo "Enter password"
