@@ -22,9 +22,7 @@ if [[ "$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES"|| "$s" == "Y
     read user
     echo "Enter DB Table"
     read db_table
-    echo "Enter DB password"
-    read pass
-    mysql -u "${user}" -p "${pass}" -e "CREATE DATABASE IF NOT EXISTS \`$db_table\` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci"
+    mysql -u "${user}" -p  -e "CREATE DATABASE IF NOT EXISTS \`$db_table\` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci"
 fi
 
 
@@ -45,44 +43,44 @@ if [[ "$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES"|| "$s" == "Y
     read domain
 
     echo "APP_NAME=$name
-    APP_ENV=project
-    APP_KEY=
-    APP_DEBUG=false
-    APP_URL=http://$domain
+APP_ENV=project
+APP_KEY=
+APP_DEBUG=false
+APP_URL=http://$domain
 
-    LOG_CHANNEL=stack
+LOG_CHANNEL=stack
 
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=$db_table
-    DB_USERNAME=$user
-    DB_PASSWORD=$pass
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=$db_table
+DB_USERNAME=$user
+DB_PASSWORD=$pass
 
-    BROADCAST_DRIVER=log
-    CACHE_DRIVER=file
-    QUEUE_CONNECTION=sync
-    SESSION_DRIVER=file
-    SESSION_LIFETIME=120
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
 
-    REDIS_HOST=127.0.0.1
-    REDIS_PASSWORD=null
-    REDIS_PORT=6379
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
 
-    MAIL_DRIVER=smtp
-    MAIL_HOST=smtp.mailtrap.io
-    MAIL_PORT=2525
-    MAIL_USERNAME=null
-    MAIL_PASSWORD=null
-    MAIL_ENCRYPTION=null
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
 
-    PUSHER_APP_ID=
-    PUSHER_APP_KEY=
-    PUSHER_APP_SECRET=
-    PUSHER_APP_CLUSTER=mt1
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
 
-    MIX_PUSHER_APP_KEY=\"\${PUSHER_APP_KEY}\"
-    MIX_PUSHER_APP_CLUSTER=\"\${PUSHER_APP_CLUSTER}\"
+MIX_PUSHER_APP_KEY=\"\${PUSHER_APP_KEY}\"
+MIX_PUSHER_APP_CLUSTER=\"\${PUSHER_APP_CLUSTER}\"
     " >>  "$path/.env";
     php artisan key:generate
 fi
@@ -131,7 +129,7 @@ if [[ "$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES" || "$s" == "
         }
 
         location ~ \.php$ {
-        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_pass unix:/run/php/php8.0-fpm.sock;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;

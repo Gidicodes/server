@@ -8,4 +8,6 @@ sudo apt install php7.4 php7.4-gd php7.4-common -y
 
 echo "To verify just run following command"
 echo "php -m"
-echo "php --ini"
+echo "php --ini
+
+sudo apt install php8.0-fpm

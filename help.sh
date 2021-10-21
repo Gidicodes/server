@@ -7,8 +7,8 @@ echo "Commands Available are
   install:mysql         Install and setup Mysql Server
   install:node          Install and setup NodeJS
   install:nginx         Install and setup Nginx
-  install:php           Install and setup PHP 7.4
-  install:php8          Install and setup PHP 8
+  install:php           Install and setup PHP 8
+  install:php7          Install and setup PHP 7.4
   install:postgres      Install and setup Postgres SQL
   nginx:host            Setup new nginx host
   laravel               Setup laravel project

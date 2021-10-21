@@ -1,162 +1,109 @@
-# Server setup scripts
-
-Simple scripts to help during server setup for project written in laravel. 
-
 # Overview
-These scripts will do several things for you. 
-
-### Provision the Server
-They will install all required dependencies and configure the server for production. For example php, node, MariaDB, git,... will be installed, and things like firewall and password logins will be set.
-
-### Create a MariaDB/MySQL Table
-`create-mysql.sh $name_of_database`
-
-### Install MongoDB
-`install-mongo.sh $mongo_user $mongo_password`
-
-### Create nginx Servers
-`serve-laravel.sh $server_name root $http_port(default 80) $https_port(default 443) $php_version`
-
-### Create git repo for auto deployment
-`create-git-repo.sh $repo_name $site_address $user_that_owns_repo`
+Scripts to help during server setup for project hosted on Ubuntu server.
+These scripts are for installing dependencies, configuring Cron Job. 
 
 # Requirments
-
-* Ubuntu 16.04
-* root access
+* Ubuntu Server Min:16.04 
 
 
-# Usage
-
-## Provision
-
-These scripts were intended to be run as the root user. 
-
-1. Sudo into root
-
+# Configure Scripts
+These scripts were intended to be run as the root user.
+1. Change directory to `~`
 ```
-sudo su
+cd ~
 ```
-
-2. Change directory to `/root`
-
-```
-cd /root
-```
-
-3. Clone the repository into `/root`
-
-
+2. Clone the repository into `~/server`
 ```bash
-git clone https://jsarry@bitbucket.org/turkubeerdev/laravel-serve.git server
+git clone https://github.com/gidicodes/server.git
 ```
 
-> Note: the scripts must be cloned into the folder `/root/server/` the provision script looks for scripts in `/root/server/`. See excerpt below.
+> Note: the scripts must be cloned into the any other folder, but we recommend `~/server`
 
-```
-457: # Setup MariaDB Repositories
-458: 
-459: bash /root/server/install-maria.sh $mysql_root_username $mysql_username $mysql_password
-460: 
-461: 
-```
-
-Once you have cloned the scripts into `/root/server/` open and configure the required variables.
-
-There are two section you MUST modify. First in the beginning 
-
-### Variables
-```
-# Decleration of Variables
-# Host
-host_name="hostname"
-# user
-sudo_user="root-user"
-sudo_password="supersecret" #will be encrypted using mkpasswd
-
-# git config
-git_name="user user"
-git_email="user@user.com"
-
-# MySQL
-mysql_username="root"
-mysql_password="supersecret"
-mysql_database="datatable"
-
-# Mongo
-mongo_user="user"
-mongo_password="supersecret"
-```
-
-configure these to your taste.
-
-### SSH Keys
-Add your ssh keys. If you don't you will have no way of accessing your server.
-
-```
-103: # Build Formatted Keys & Copy Keys 
-104: 
-105: #Remove this line once you have pasted in your public keys!!
-106: exit 0
-107: cat > /root/.ssh/authorized_keys << EOF
-108: # ssh-public authorize keys
-109:  {{ !!! ADD YOUR SSH KEYS HERE !!!}}
-110: EOF
-```
-
-> Note: As a bit of protection. If you don't modify this section of the `provision.sh` script the script will not run. Remove `exit 0` line once you've added your ssh keys.
-
-Once you've set up everything run the provision script
-
+### Check for help
 ```bash
-bash provision.sh
+bash help.sh
+```
+### Install LEMP Stack
+LEMP stands for Linux, Nginx (Engine-X), MariaDB/MySQL and PHP.
+```bash
+bash install:lemp.sh
+```
+Run to install all required dependencies and configure the server for production.
+
+### Install NGINX Server 
+```bash
+bash install:nginx.sh
+```
+### Install MariaDB
+```bash
+bash install:maria.sh
+```
+### Install MySQL
+```bash
+bash install:mysql.sh
+```
+### Install PostgreSQL
+```bash
+bash install:postgres.sh
+```
+ 
+### Install PHP
+```bash
+bash install:php.sh
+````
+
+### Install PHP 7.4
+```bash
+bash install:php7.sh
+```
+### Install Node
+```bash
+bash install:node.sh
+```
+ 
+### Install Composer
+```bash
+bash install:composer.sh
+```
+ 
+### Install MongoDB
+```bash
+bash install:mongo.sh
+```
+ 
+### Install Certbot
+```bash
+bash install:certbot.sh
 ```
 
-This can take a while.
-
-## Setting up server
-To create a server block you need to run the `serve-laravel.sh` script.
-
-The script takes several perameters
-1. server_name - required (example.com)
-2. http_port - required (80)
-3. https_port - required (443)
-4. php_version - required (5.6, 7.0, 7.1, 7.2)
-
+## Laravel Projects
+#### Setup Laravel Project
+```bash
+bash laravel.sh
 ```
-bash serve-laravel.sh $server_name root $http_port(default 80) $https_port(default 443) $php_version
+#### Add Cron Job for Laravel Project
+```bash
+bash add:cron.sh
 ```
 
-You should then create a self-signed ssl certificate by running and passing the server_name you just used above as the parameter.
-
+#### Run Supervisor
+```bash
+bash supervisor.sh
 ```
-bash create-certificate server_name
+#### Create a new Nginx Host
+```bash
+bash nginx:host.sh
 ```
-
-## Automated Deployment
-Finally this is optional but you can create a git repo to help with automated deployments.
-
-The script takes several parameters
-1. REPO - required (project_name)
-2. WEBSITE - required (example.com)
-3. USER - required (user)
-
-> Note: The user should not be root
-
-```
-bash create-git-repo.sh REPO WEBSITE USER
+#### Configure Laravel File Permissions
+```bash
+bash laravel:file.sh
 ```
 
-You can now add the server a remote git url ie:
 
+## Express, NodeJS Projects
+```bash
+bash setup:express.sh
 ```
-git remote add deploy user@<ip|domain>:/home/{user}/git/REPO
-```
+ 
 
-now when you
-
-```
-git push deploy
-```
-
-it will push to the remote server and trigger a build. Your new code should be reflected on your production site.
+ 
