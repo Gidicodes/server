@@ -42,7 +42,7 @@ if [[ "$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES"|| "$s" == "Y
     echo "Enter domain name E.g google.com for APP_URL"
     read domain
 
-    echo "APP_NAME=$name
+    sudo echo "APP_NAME=$name
 APP_ENV=project
 APP_KEY=
 APP_DEBUG=false
@@ -82,7 +82,7 @@ PUSHER_APP_CLUSTER=mt1
 MIX_PUSHER_APP_KEY=\"\${PUSHER_APP_KEY}\"
 MIX_PUSHER_APP_CLUSTER=\"\${PUSHER_APP_CLUSTER}\"
     " >>  "$path/.env";
-    php artisan key:generate
+    sudo php artisan key:generate
 fi
 
 echo "Would you like to setup project file permissions?
@@ -109,7 +109,7 @@ if [[ "$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES" || "$s" == "
     echo "Enter domain names E.g google.com for Nginx server_name"
     read domains
 
-    echo "server{
+    sudo echo "server{
         root $path/public;
         index index.php index.html index.htm index.nginx-debian.html;
         server_name $domains;
