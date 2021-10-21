@@ -1,5 +1,10 @@
 path="$PWD/index.sh"
-sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
+if [ -f "~/.bashrc" ]; then
+  sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
+else
+  sudo touch "~/.bashrc"
+  sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
+fi
 sudo source "~/.bashrc"
 sudo echo "
 #!/bin/bash
