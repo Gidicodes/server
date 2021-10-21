@@ -11,7 +11,7 @@ if [[ -d "$path" ]]; then
 Y|n"
   read s
   if [[ "$s" == "y" || "$s" == "yes" ]]; then
-    echo "server{
+  sudo echo "server{
     root $path/public;
     index index.php index.html index.htm index.nginx-debian.html;
     server_name $domain;
@@ -33,7 +33,7 @@ Y|n"
     }
 
     location ~ \.php$ {
-       fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+       fastcgi_pass unix:/run/php/php8.0-fpm.sock;
        fastcgi_split_path_info ^(.+\.php)(/.+)$;
        fastcgi_index index.php;
        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
