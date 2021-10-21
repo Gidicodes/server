@@ -2,7 +2,7 @@ path="$PWD/index.sh"
 if [ -f "~/.bashrc" ]; then
   sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
 else
-  sudo touch "~/.bashrc"
+  sudo touch ~/.bashrc
   sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
 fi
 sudo source "~/.bashrc"
