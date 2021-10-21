@@ -1,6 +1,6 @@
 path="$PWD/index.sh"
 sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
-source "~/.bashrc"
+sudo source "~/.bashrc"
 sudo echo "
 #!/bin/bash
 if [[ \$1 ]]; then
