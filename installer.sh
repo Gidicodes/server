@@ -1,11 +1,11 @@
 path="$PWD/index.sh"
-if [ -f "~/.bashrc" ]; then
-  sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
+if [ -f ~/.bash_aliases ]; then
+  sudo echo  "alias server=\"bash $path\"" >> "~/.bash_aliases"
 else
-  sudo touch ~/.bashrc
-  sudo echo  "alias server=\"bash $path\"" >> "~/.bashrc"
+  sudo touch ~/.bash_aliases
+  sudo echo  "alias server=\"bash $path\"" >> "~/.bash_aliases"
 fi
-sudo source "~/.bashrc"
+sudo source "~/.bash_aliases"
 sudo echo "
 #!/bin/bash
 if [[ \$1 ]]; then
