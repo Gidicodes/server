@@ -12,7 +12,7 @@ Y|n"
   read s
   if [[ "$s" == "y" || "$s" == "yes" ]]; then
   sudo echo "server{
-    root $path;
+    root $path/public;
     index index.php index.html index.htm index.nginx-debian.html;
     server_name $domain;
 
