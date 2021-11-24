@@ -41,6 +41,8 @@ read s
 if [[ "$s" == "y" || "$s" == "yes" || "$s" == "Y"  || "$s" == "YES"|| "$s" == "Yes" ]]; then
     echo "Enter domain name E.g google.com for APP_URL"
     read domain
+    echo "Enter DB_PASSWORD"
+    read pass
 
     sudo echo "APP_NAME=$name
 APP_ENV=project
