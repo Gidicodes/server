@@ -1,9 +1,7 @@
 #!/bin/bash
 sudo apt install software-properties-common -y
-sudo add-apt-repository ppa:ondrej/php
+sudo add-apt-repository ppa:ondrej/nginx
 sudo apt-get update
-sudo apt install php8.0 php8.0-common -y
-sudo apt install php8.0-fpm php8.0-mysql php8.0-redis php8.0-imagick php8.0-curl php8.0-bcmath php8.0-xmlrpc php8.0-gd php-mysql php8.0-dom php8.0-cli php-json php8.0-common php8.0-soap php8.0-mongodb php-xml php-pear zip unzip php-zip -y
-echo "To verify just run following command"
-echo "php -m"
-echo "php --ini"
+sudo apt install php8.1-fpm
+sudo apt install php8.1-common php8.1-mysql php8.1-xml php8.1-xmlrpc php8.1-curl php8.1-gd php8.1-imagick php8.1-cli php8.1-dev php8.1-imap php8.1-mbstring php8.1-opcache php8.1-soap php8.1-zip php8.1-redis php8.1-intl -y
+echo "===============================DONE INSTALLING PHP8.1===================================="
